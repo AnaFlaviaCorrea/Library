@@ -1,52 +1,35 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Library 
-    </h1>
+    <h1>Library</h1>
     <form action="{% url 'search'%}">
-        <input type="text" name= "search" placeholder=" Buscar livros">
+        <input type="text" name="search" placeholder="Buscar livros">
         <button type="submit">Buscar</button>
     </form>
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Description</th>
-                <th>Release Date</th>
-               
-            </tr>
-        </thead>
-        <tbody>
-            {% for books in books%}
-            <tr>
-                <td>{{books.id}}</td>
-                <td>{{books.title}}</td>
-                <td>{{books.author}}</td>
-                <td>{{books.description}}</td>
-                <td>{{books.release_year}}</td>
-                <!-- {% if contacts.active == True %}
-                <td><i class="fa fa-circle-check" style="color: green;"></i></td>
-                {% else%}
-                <td><i class="fa fa-circle-xmark" style="color: red;"></i></td>
-                {%endif%} -->
-
-                
-            </tr>
-            {%endfor%}
-            
-        </tbody>
-    </table>
+    <div class="card-container">
+        {% for book in books %}
+        <div class="card">
+            <img src="http://source.unsplash.com/100x100/?book" alt="{{ book.title }}">
+            <h2>{{ book.title }}</h2>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+            <p><strong>Release Date:</strong> {{ book.release_year }}</p>
+            <!-- <p>{{ book.description }}</p> -->
+        </div>
+        {% endfor %}
+    </div>
     <div class="pagination">
         <a href="#">1</a>
         <a href="#">2</a>
@@ -54,5 +37,9 @@
         <a href="#">4</a>
         <a href="#">5</a>
     </div>
+
+
+
 </body>
+
 </html>
